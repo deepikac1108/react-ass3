@@ -38,116 +38,119 @@ map, filter, reduce, every, find, includes, join, pop, push, reverse, slice, sor
 
 
 3. reduce
-        Array.prototype.myReduce = function(callback, initialValue) {
-          let accumulator = initialValue !== undefined ? initialValue : this[0];
-          let startIndex = initialValue !== undefined ? 0 : 1;
-          for (let i = startIndex; i < this.length; i++) {
-            accumulator = callback(accumulator, this[i], i, this);
-          }
-          return accumulator;
-        };
 
-4. every
+	    Array.prototype.myReduce = function(callback, initialValue) {
+	          let accumulator = initialValue !== undefined ? initialValue : this[0];
+	          let startIndex = initialValue !== undefined ? 0 : 1;
+	          for (let i = startIndex; i < this.length; i++) {
+	            accumulator = callback(accumulator, this[i], i, this);
+	          }
+	          return accumulator;
+	        };
 
-   Array.prototype.myEvery = function(callback) {
-          for (let i = 0; i < this.length; i++) {
-            if (!callback(this[i], i, this)) {
-              return false;
-            }
-          }
-          return true;
-        };
+5. every
 
-5. find
+		   Array.prototype.myEvery = function(callback) {
+		          for (let i = 0; i < this.length; i++) {
+		            if (!callback(this[i], i, this)) {
+		              return false;
+		            }
+		          }
+		          return true;
+		        };
 
-        Array.prototype.myFind = function(callback) {
-          for (let i = 0; i < this.length; i++) {
-            if (callback(this[i], i, this)) {
-              return this[i];
-            }
-          }
-          return undefined;
-        };
+6. find
 
-6. includes
+	        Array.prototype.myFind = function(callback) {
+	          for (let i = 0; i < this.length; i++) {
+	            if (callback(this[i], i, this)) {
+	              return this[i];
+	            }
+	          }
+	          return undefined;
+	        };
 
-      Array.prototype.myIncludes = function(value) {
-        for (let i = 0; i < this.length; i++) {
-          if (this[i] === value) {
-            return true;
-          }
-        }
-        return false;
-      };
+7. includes
 
-7. join
+		      Array.prototype.myIncludes = function(value) {
+		        for (let i = 0; i < this.length; i++) {
+		          if (this[i] === value) {
+		            return true;
+		          }
+		        }
+		        return false;
+		      };
 
-      Array.prototype.myJoin = function(separator = ',') {
-        let result = '';
-        for (let i = 0; i < this.length; i++) {
-          result += this[i];
-          if (i < this.length - 1) {
-            result += separator;
-          }
-        }
-        return result;
-      };
+8. join
 
-8. pop
+	      Array.prototype.myJoin = function(separator = ',') {
+	        let result = '';
+	        for (let i = 0; i < this.length; i++) {
+	          result += this[i];
+	          if (i < this.length - 1) {
+	            result += separator;
+	          }
+	        }
+	        return result;
+	      };
 
-        Array.prototype.myPop = function() {
-          if (this.length === 0) return undefined;
-          const lastElement = this[this.length - 1];
-          this.length = this.length - 1;
-          return lastElement;
-        };
+9. pop
 
-9. push
+	        Array.prototype.myPop = function() {
+	          if (this.length === 0) return undefined;
+	          const lastElement = this[this.length - 1];
+	          this.length = this.length - 1;
+	          return lastElement;
+	        };
 
-      Array.prototype.myPush = function(...elements) {
-        for (let i = 0; i < elements.length; i++) {
-          this[this.length] = elements[i];
-        }
-        return this.length;
-      };
+10. push
 
+		      Array.prototype.myPush = function(...elements) {
+		        for (let i = 0; i < elements.length; i++) {
+		          this[this.length] = elements[i];
+		        }
+		        return this.length;
+		      };
+		
 
-10. reverse
+11. reverse
 
-      Array.prototype.myReverse = function() {
-        let left = 0;
-        let right = this.length - 1;
-        while (left < right) {
-          let temp = this[left];
-          this[left] = this[right];
-          this[right] = temp;
-          left++;
-          right--;
-        }
-        return this;
-      };
+		      Array.prototype.myReverse = function() {
+		        let left = 0;
+		        let right = this.length - 1;
+		        while (left < right) {
+		          let temp = this[left];
+		          this[left] = this[right];
+		          this[right] = temp;
+		          left++;
+		          right--;
+		        }
+		        return this;
+		      };
 
-11. slice
+12. slice
 
-      Array.prototype.mySlice = function(start = 0, end = this.length) {
-        let result = [];
-        for (let i = start; i < end; i++) {
-          if (i < this.length) {
-            result.push(this[i]);
-          }
-        }
-        return result;
-      };
-12. sort
-        Array.prototype.mySort = function(compareFunction) {
-      for (let i = 0; i < this.length - 1; i++) {
-        for (let j = 0; j < this.length - 1 - i; j++) {
-          if (compareFunction ? compareFunction(this[j], this[j + 1]) > 0 : this[j] > this[j + 1]) {
-            let temp = this[j];
-            this[j] = this[j + 1];
-            this[j + 1] = temp;
-          }
-        }
-      }
-      return this;
-    };
+		      Array.prototype.mySlice = function(start = 0, end = this.length) {
+		        let result = [];
+		        for (let i = start; i < end; i++) {
+		          if (i < this.length) {
+		            result.push(this[i]);
+		          }
+		        }
+		        return result;
+		      };
+13. sort
+		
+		  Array.prototype.mySort = function(compareFunction) {
+			      for (let i = 0; i < this.length - 1; i++) {
+			        for (let j = 0; j < this.length - 1 - i; j++) {
+			          if (compareFunction ? compareFunction(this[j], this[j + 1]) > 0 : this[j] > this[j + 1]) {
+			            let temp = this[j];
+			            this[j] = this[j + 1];
+			            this[j + 1] = temp;
+			          }
+			        }
+			      }
+			      return this;
+			    };
+	    
